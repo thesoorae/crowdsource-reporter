@@ -801,8 +801,10 @@ define([
                 } else {
                     submitButtonText = this.config.submitReportButtonText;
                 }
+                submitButtonText = "Report blight" // This should probably be done via the config
                 domAttr.set(dom.byId("submitFromMapText"), "innerHTML", submitButtonText);
                 submitButtonColor = (this.config && this.config.submitReportButtonColor) ? this.config.submitReportButtonColor : "#35ac46";
+                submitButtonColor = "black"; // This should probably be done via the config
                 domStyle.set(dom.byId("submitFromMap"), "background-color", submitButtonColor);
 
                 on(dom.byId("submitFromMap"), "click, keypress", lang.hitch(this, function (evt) {

@@ -66,8 +66,14 @@
         </div>
         <div class="esriCTFullHeightWidth" id="layoutContainer">
             <div id="mapParentContainer" class="esriCTMapContainer">
+                <div class="mapTextAndButtonContainer">
                 <div class="page_description">This map shows blight reports in the Macon-Bibb area. Click on each marker to see details about the report.</div>
-
+                <div role="button" tabindex="0" id="submitFromMap" class="esriCTReportButton esriCTPointerCursor">
+                    <div class="esriCTReportButtonContainer">
+                        <div  id="submitFromMapText"  class="esriCTReportButtonText"></div>
+                    </div>
+                </div>
+            </div>
                 <div class="esriCTListHeader esriCTBGColor esriCTHeaderBackgroundColorAsTextColor">
                     <div tabindex="0" role="button" id="mapBackButton">
                             <span aria-hidden="true" class="esriCTBackButton esriCTInvertFontIcons icon icon-left-arrow esriCTPointerCursor">
@@ -87,12 +93,7 @@
                     </div>
                 </div>
                 <div id="webMapListMapDiv" dir="ltr" data-dojo-props="region:'center'" style="display: none"></div>
-                <div role="button" tabindex="0" id="submitFromMap" class="esriCTReportButton esriCTPointerCursor esriCTHidden">
-                    <div class="esriCTReportButtonContainer">
-                        <div class="esriCTReportButtonIcon"></div>
-                        <div  id="submitFromMapText"  class="esriCTReportButtonText"></div>
-                    </div>
-                </div>
+                
             </div>
             <div id="geoformContainer" class="esriCTHidden esriCTBorderLeft esriCTGeoFormParentContainer esriCTHeaderTextColorAsBorder">
             </div>
