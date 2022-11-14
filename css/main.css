@@ -2710,3 +2710,17 @@ margin-top: -2px !important;
 .page_description {
     font-size: 14px;
 }
+.item-status::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #69b6d5;
+}
+.submitted::before {
+    background-color: green;
+}

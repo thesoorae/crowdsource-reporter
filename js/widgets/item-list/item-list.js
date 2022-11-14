@@ -261,9 +261,10 @@ define([
                 }, itemContent);
                 
                 // status
+                var status = this.getStatus(item.attributes.status);
                 domConstruct.create('li', {
-                    'class': 'item-status item-detail',
-                    'innerHTML': "Status: " + this.getStatus(item.attributes.status)
+                    'class': 'item-status item-detail ' + status.toLowerCase(),
+                    'innerHTML': status
                 }, itemContent);
                 // address
                 domConstruct.create('li', {
