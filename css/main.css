@@ -26,7 +26,7 @@ html, body
     height: 100%;
     width: 100%;
     font-size: 12px;
-    font-family: Arial;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
     max-height: 100%;
     max-width: 100%;
     /* background: #EDEDED; */
@@ -311,7 +311,7 @@ html, body
 {
     height: 50px;
     width: 30px;
-    background-color: rgba(0, 0, 0, 0.30);
+    /* background-color: rgba(0, 0, 0, 0.30); */
     float: left;
     display: inline-block;
     font-size: 27px;
@@ -322,8 +322,9 @@ html, body
 .esriCTHeaderText
 {
     float: left;
-    line-height: 50px;
-    padding: 0 5px 0 5px;
+    font-size: 20px;
+    /* line-height: 50px;
+    padding: 0 5px 0 5px; */
 }
 
 .esriCTMapHeaderText
@@ -349,7 +350,6 @@ html, body
     -moz-opacity: 0.4;
     -khtml-opacity: 0.4;
     opacity: 0.4;
-    background-color: #000;
 }
 
 .app-loading .loading-indicator
@@ -1082,8 +1082,7 @@ label
 {
     border-radius: 0px !important;
     font-size: 12px;
-    font-family: Verdana;
-    resize: none !important;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;     resize: none !important;
 }
 
 .form-control-lg
@@ -1181,8 +1180,7 @@ label
     border-radius: 0px !important;
     height: 35px;
     font-size: 14px;
-    font-family: Verdana;
-}
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif; }
 
 .esriCTGeoLocation
 {
@@ -1512,8 +1510,7 @@ label
 
 .esriCTItemList
 {
-    font-family: Arial, 'Helvetica Neue' , Helvetica, sans-serif;
-    font-weight: bold;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;     font-weight: bold;
     font-size: 16px;
     background-color: #eee;
 }
@@ -1705,9 +1702,9 @@ label
 
 .esriCTItemDetailsContainer
 {
-    height: calc(100% - 50px);
+    /* height: calc(100% - 50px); */
     overflow: auto;
-    background: #f0f0f0;
+    /* background: #f0f0f0; */
 }
 
 .esriCTItemDetail
@@ -2438,8 +2435,7 @@ margin-top: -2px !important;
     border-radius: 0px !important;
     height: 35px;
     font-size: 14px;
-    font-family: Verdana;
-}
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif; }
 
 .esriCTFileAttachMenuList {
     padding-top: 10px;
@@ -2658,6 +2654,8 @@ margin-top: -2px !important;
 /* Input group addon css ends */
 .itemContentList{
     list-style: none;
+    padding: 10px;
+    margin: 0px;
 }
 
 .item-status {
@@ -2674,11 +2672,6 @@ margin-top: -2px !important;
     font-weight: normal;
 }
 
-.esriCTItemSummary {
- border: 0;
- margin: 20px 0px;
- background-color: #EDEDED;
-}
 .uploadSubtitle {
     font-size: 12px;
     font-weight: normal;
@@ -2733,11 +2726,26 @@ margin-top: -2px !important;
 
 .esriCTItemSummary {
     max-width: 350px;
-    margin: 20px auto;
+    border: 0;
+     margin: 20px 50px;
+    background-color: #EDEDED;
 }
 
 .esriCTItemList {
     display: flex;
     flex-direction: column;
-    justify-content: center;;
+    justify-content: center;
+
+}
+
+
+.esriCTListHeader {
+    margin-bottom: 30px;
+    margin-top: 50px;
+    color: black !important;
+    margin-left: 50px;
+    line-height: 50px;
+}
+.esriCTBackButton {
+    margin-left: -50px;
 }

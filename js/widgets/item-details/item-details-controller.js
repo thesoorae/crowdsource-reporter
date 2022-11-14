@@ -202,13 +202,19 @@ define([
         _addListeners: function () {
             var self = this;
             on(this.backIcon, "click, keypress", lang.hitch(this, function (evt) {
+                console.log("in add listeners item details");
                 if (!this.appUtils.validateEvent(evt)) {
+                    console.log("apputils did not validate");
                     return;
                 }
+                console.log("past here");
                 //Hide the success message if present
                 if (!domClass.contains(this.headerMessageType, "esriCTHidden")) {
+                    console.log("after success message hide");
                     domClass.add(this.headerMessageType, "esriCTHidden");
+                    console.log("apputils did not validate");
                 }
+                console.log("before onCancel");
                 this.onCancel(self.item);
             }));
 
@@ -348,11 +354,13 @@ define([
             //Listen close button click event of comment header message
             on(this.headerMessageButton, "click", lang.hitch(this, function () {
                 //Hide the success message
+                console.log("are you in the header message?");
                 domClass.add(this.headerMessageType, "esriCTHidden");
             }));
         },
 
         onCancel: function (evt) {
+            console.log(" in onCancel");
             return evt;
         },
 

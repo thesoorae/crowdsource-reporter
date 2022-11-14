@@ -191,9 +191,9 @@
      background-color: ${HeaderTextColor} !important;
 }
 
-.esriCTBackButton {
+/* .esriCTBackButton {
  background-color: ${OverlayBackgroundColor} !important;
-}
+} */
 
 .esriCTVotesDetails {
     color : ${OverlayBackgroundColor} !important;

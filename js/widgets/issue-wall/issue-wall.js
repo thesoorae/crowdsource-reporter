@@ -65,7 +65,7 @@ define([
         * Will be called on post creation of the widget.
         */
         postCreate: function () {
-            var submitButtonText, submitButtonColor;
+            // var submitButtonText, submitButtonColor;
             // Items list
             this.itemsList = new ItemList({
                 "appConfig": this.appConfig,
@@ -73,10 +73,10 @@ define([
                 "linkToMapView": true
             }).placeAt(this.listContainer); // placeAt triggers a startup call to _itemsList
             //Change the position of button as per the configuration
-            if (this.appConfig.submitReportButtonPosition &&
-                this.appConfig.submitReportButtonPosition === "top") {
-                domConstruct.place(this.submitReport, this.listContainer, "before");
-            }
+            // if (this.appConfig.submitReportButtonPosition &&
+            //     this.appConfig.submitReportButtonPosition === "top") {
+            //     domConstruct.place(this.submitReport, this.listContainer, "before");
+            // }
 
             //If webmap list is not required, we need to hide the back button
             if (!this.appUtils.isWebmapListRequired) {
@@ -116,78 +116,78 @@ define([
                 event.stop(evt);
             })));
 
-            this.own(on(this.submitReport, "click, keypress", lang.hitch(this, function (evt) {
-                var commentSubmitStatus, canSubmit = true;
-                if (this.appConfig.hasOwnProperty("commentStartDate") &&
-                    this.appConfig.hasOwnProperty("commentEndDate")) {
-                    commentSubmitStatus = this.appUtils.isCommentDateInRange();
-                    if (commentSubmitStatus === false) {
-                        canSubmit = false;
-                        if (!this.appUtils.reportingPeriodDialog) {
-                            this.appUtils.createReportingPeriodDialog();
-                        }
-                        this.appUtils.reportingPeriodDialog.showDialog("reporting");
-                        return;
-                    } else if (commentSubmitStatus === null) {
-                        if (this.appConfig.hasOwnProperty("reportingPeriod") &&
-                            this.appConfig.reportingPeriod === "Closed") {
-                            this.appUtils.reportingPeriodDialog.showDialog("reporting");
-                            canSubmit = false;
-                            return;
-                        }
-                    }
-                } else {
-                    if (this.appConfig.hasOwnProperty("reportingPeriod") &&
-                        this.appConfig.reportingPeriod === "Closed") {
-                        this.appUtils.reportingPeriodDialog.showDialog("reporting");
-                        canSubmit = false;
-                        return;
-                    }
-                }
-                if (canSubmit) {
-                    //If item id exist, check for the access property
-                    //If access is public, then allow all the users to perform the edits
-                    //If access is not public, then check user privileges
-                    if (!this.operationalLayerDetails.itemId || (this.operationalLayerDetails.itemId &&
-                        this.appUtils.layerAccessInfoObj.hasOwnProperty(this.operationalLayerDetails.itemId) &&
-                        (this.appUtils.layerAccessInfoObj[this.operationalLayerDetails.itemId] === "public"))) {
-                        this.onSubmit(evt);
-                    } else {
-                        if (this.appConfig.logInDetails.canEditFeatures) {
-                            this.onSubmit(evt);
-                        } else {
-                            this.appUtils.showMessage(this.appConfig.i18n.main.noEditingPermissionsMessage);
-                        }
-                    }
-                }
-            })));
+            // this.own(on(this.submitReport, "click, keypress", lang.hitch(this, function (evt) {
+            //     var commentSubmitStatus, canSubmit = true;
+            //     if (this.appConfig.hasOwnProperty("commentStartDate") &&
+            //         this.appConfig.hasOwnProperty("commentEndDate")) {
+            //         commentSubmitStatus = this.appUtils.isCommentDateInRange();
+            //         if (commentSubmitStatus === false) {
+            //             canSubmit = false;
+            //             if (!this.appUtils.reportingPeriodDialog) {
+            //                 this.appUtils.createReportingPeriodDialog();
+            //             }
+            //             this.appUtils.reportingPeriodDialog.showDialog("reporting");
+            //             return;
+            //         } else if (commentSubmitStatus === null) {
+            //             if (this.appConfig.hasOwnProperty("reportingPeriod") &&
+            //                 this.appConfig.reportingPeriod === "Closed") {
+            //                 this.appUtils.reportingPeriodDialog.showDialog("reporting");
+            //                 canSubmit = false;
+            //                 return;
+            //             }
+            //         }
+            //     } else {
+            //         if (this.appConfig.hasOwnProperty("reportingPeriod") &&
+            //             this.appConfig.reportingPeriod === "Closed") {
+            //             this.appUtils.reportingPeriodDialog.showDialog("reporting");
+            //             canSubmit = false;
+            //             return;
+            //         }
+            //     }
+            //     if (canSubmit) {
+            //         //If item id exist, check for the access property
+            //         //If access is public, then allow all the users to perform the edits
+            //         //If access is not public, then check user privileges
+            //         if (!this.operationalLayerDetails.itemId || (this.operationalLayerDetails.itemId &&
+            //             this.appUtils.layerAccessInfoObj.hasOwnProperty(this.operationalLayerDetails.itemId) &&
+            //             (this.appUtils.layerAccessInfoObj[this.operationalLayerDetails.itemId] === "public"))) {
+            //             this.onSubmit(evt);
+            //         } else {
+            //             if (this.appConfig.logInDetails.canEditFeatures) {
+            //                 this.onSubmit(evt);
+            //             } else {
+            //                 this.appUtils.showMessage(this.appConfig.i18n.main.noEditingPermissionsMessage);
+            //             }
+            //         }
+            //     }
+            // })));
             //Set focus to app title on focus out of submit a report button
             //This resolves the issue of focus being set to mobile menu
-            if (dojowindow.getBox().w < 768 &&
-                this.appConfig.submitReportButtonPosition !== "top") {
-                $(this.submitReport).focusout(lang.hitch(this, function () {
-                    this.onSubmitButtonFocusOut();
-                }));
-            }
-            if (this.appConfig && lang.trim(this.appConfig.submitReportButtonText) === "") {
-                submitButtonText = this.appConfig.i18n.main.submitReportButtonText;
-            } else {
-                submitButtonText = this.appConfig.submitReportButtonText;
-            }
-            domAttr.set(this.submitReportButton, "innerHTML", submitButtonText);
-            domAttr.set(this.submitReport, "aria-label", submitButtonText);
-            submitButtonColor = (this.appConfig && this.appConfig.submitReportButtonColor) ? this.appConfig.submitReportButtonColor : "#35ac46";
-            domStyle.set(this.submitReport, "background-color", submitButtonColor);
-            domAttr.set(this.noIssuesMessage, "innerHTML", this.appConfig.i18n.issueWall.noResultsFound);
-            domAttr.set(this.noIssuesMessage, "aria-label", this.appConfig.i18n.issueWall.noResultsFound);
-            domAttr.set(this.listBackButton, "title", this.appConfig.i18n.issueWall.gotoWebmapListTooltip);
-            domAttr.set(this.listBackButton, "aria-label", this.appConfig.i18n.issueWall.gotoWebmapListTooltip);
-            domAttr.set(this.fallBackTextNode, "innerHTML", this.appConfig.i18n.issueWall.gotoWebmapListTooltip);
-            domAttr.set(this.listMapItButton, "title", this.appConfig.i18n.issueWall.gotoMapViewTooltip);
-            domAttr.set(this.listMapItButton, "aria-label", this.appConfig.i18n.issueWall.gotoMapViewTooltip);
-            domAttr.set(this.fallBackMapBtnTextNode, "title", this.appConfig.i18n.issueWall.gotoMapViewTooltip);
-            //on load hide the issue list
-            this.hide();
+            // if (dojowindow.getBox().w < 768 &&
+            //     this.appConfig.submitReportButtonPosition !== "top") {
+            //     $(this.submitReport).focusout(lang.hitch(this, function () {
+            //         this.onSubmitButtonFocusOut();
+            //     }));
+            // }
+        //     if (this.appConfig && lang.trim(this.appConfig.submitReportButtonText) === "") {
+        //         submitButtonText = this.appConfig.i18n.main.submitReportButtonText;
+        //     } else {
+        //         submitButtonText = this.appConfig.submitReportButtonText;
+        //     }
+        //     domAttr.set(this.submitReportButton, "innerHTML", submitButtonText);
+        //     domAttr.set(this.submitReport, "aria-label", submitButtonText);
+        //     submitButtonColor = (this.appConfig && this.appConfig.submitReportButtonColor) ? this.appConfig.submitReportButtonColor : "#35ac46";
+        //     domStyle.set(this.submitReport, "background-color", submitButtonColor);
+        //     domAttr.set(this.noIssuesMessage, "innerHTML", this.appConfig.i18n.issueWall.noResultsFound);
+        //     domAttr.set(this.noIssuesMessage, "aria-label", this.appConfig.i18n.issueWall.noResultsFound);
+        //     domAttr.set(this.listBackButton, "title", this.appConfig.i18n.issueWall.gotoWebmapListTooltip);
+        //     domAttr.set(this.listBackButton, "aria-label", this.appConfig.i18n.issueWall.gotoWebmapListTooltip);
+        //     domAttr.set(this.fallBackTextNode, "innerHTML", this.appConfig.i18n.issueWall.gotoWebmapListTooltip);
+        //     domAttr.set(this.listMapItButton, "title", this.appConfig.i18n.issueWall.gotoMapViewTooltip);
+        //     domAttr.set(this.listMapItButton, "aria-label", this.appConfig.i18n.issueWall.gotoMapViewTooltip);
+        //     domAttr.set(this.fallBackMapBtnTextNode, "title", this.appConfig.i18n.issueWall.gotoMapViewTooltip);
+        //     //on load hide the issue list
+        //     this.hide();
         },
 
         /**
@@ -217,17 +217,17 @@ define([
 
         },
 
-        onSubmit: function (evt) {
-            return evt;
-        },
+        // onSubmit: function (evt) {
+        //     return evt;
+        // },
 
         onLoadMoreClick: function (evt) {
             return evt;
         },
 
-        onSubmitButtonFocusOut: function(evt){
-            return evt;
-        },
+        // onSubmitButtonFocusOut: function(evt){
+        //     return evt;
+        // },
 
         /**
         * Initialize Issue wall
@@ -358,11 +358,15 @@ define([
             var extentChangeFlag = false;
             this.selectedGraphicsLayer = this.map.getLayer("selectionGraphicsLayer");
             //set Layer Title in header
-            domAttr.set(this.listContainerTitle, "innerHTML", this.operationalLayerDetails.title);
-            domAttr.set(this.listContainerTitle, "title", this.operationalLayerDetails.title);
+            var listTitle = "Recent reports" // this should be put in the configs for operationalLayerDetails.title
+            // domAttr.set(this.listContainerTitle, "innerHTML", this.operationalLayerDetails.title);
+            // domAttr.set(this.listContainerTitle, "title", this.operationalLayerDetails.title);
+            domAttr.set(this.listContainerTitle, "innerHTML", listTitle);
+            domAttr.set(this.listContainerTitle, "title", listTitle);
             //Show popup on click/hover of layer title div
             if (window.hasOwnProperty("ontouchstart") || window.ontouchstart !== undefined) {
-                this._createTooltip(this.listContainerTitle, this.operationalLayerDetails.title);
+                // this._createTooltip(this.listContainerTitle, this.operationalLayerDetails.title);
+                this._createTooltip(this.listContainerTitle, listTitle);
             }
             this._loadFeatureLayer(this.selectedLayer, extentChangeFlag);
         },

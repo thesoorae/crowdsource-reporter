@@ -143,30 +143,30 @@ define([
                 domClass.remove(dojoQuery(".esriCTItemSummaryHighlighter", currentNode)[0], "esriCTItemSummarySelected");
             }));
             //If selected features object id exsist, highlight the dom element
-            if (this.selectedItemOID) {
-                currentNode = dojoQuery("." + this.selectedItemOID, this.domNode);
-                if (currentNode.length > 0) {
-                    domClass.add(currentNode[0], "esriCTItemSummaryParentSelected");
-                    domClass.add(dojoQuery(".esriCTItemSummaryHighlighter", currentNode[0])[0], "esriCTItemSummarySelected");
-                }
-                if (item && this.showLikes) {
-                    //If votes count is increased, update the selected items votes in item list
-                    itemVotes = this.getItemVotes(item);
-                    favIconDiv = dojoQuery(".esriCTItemFav", currentNode[0])[0];
-                    favIconDiv.title = itemVotes.label + " " + this.i18n.likesForThisItemTooltip;
-                    votesNode = dojoQuery(".esriCTItemVotes", currentNode[0])[0];
-                    votesNode.innerHTML = itemVotes.label;
-                }
-                //Update the title for issue wall or my issue list
-                if (dojoQuery(".esriCTMyIssuePopupTitle", currentNode[0]).length > 0) {
-                    titleNode = dojoQuery(".esriCTMyIssuePopupTitle", currentNode[0])[0];
-                } else {
-                    titleNode = dojoQuery(".esriCTItemTitle", currentNode[0])[0];
-                }
-                if (titleNode) {
-                    titleNode.innerHTML = this.getItemTitle(item) || "&nbsp;";
-                }
-            }
+            // if (this.selectedItemOID) {
+            //     currentNode = dojoQuery("." + this.selectedItemOID, this.domNode);
+            //     if (currentNode.length > 0) {
+            //         domClass.add(currentNode[0], "esriCTItemSummaryParentSelected");
+            //         domClass.add(dojoQuery(".esriCTItemSummaryHighlighter", currentNode[0])[0], "esriCTItemSummarySelected");
+            //     }
+            //     if (item && this.showLikes) {
+            //         //If votes count is increased, update the selected items votes in item list
+            //         itemVotes = this.getItemVotes(item);
+            //         favIconDiv = dojoQuery(".esriCTItemFav", currentNode[0])[0];
+            //         favIconDiv.title = itemVotes.label + " " + this.i18n.likesForThisItemTooltip;
+            //         votesNode = dojoQuery(".esriCTItemVotes", currentNode[0])[0];
+            //         votesNode.innerHTML = itemVotes.label;
+            //     }
+                // //Update the title for issue wall or my issue list
+                // if (dojoQuery(".esriCTMyIssuePopupTitle", currentNode[0]).length > 0) {
+                //     titleNode = dojoQuery(".esriCTMyIssuePopupTitle", currentNode[0])[0];
+                // } else {
+                //     titleNode = dojoQuery(".esriCTItemTitle", currentNode[0])[0];
+                // }
+                // if (titleNode) {
+                //     titleNode.innerHTML = this.getItemTitle(item) || "&nbsp;";
+                // }
+            // }
         },
 
         /**
@@ -207,7 +207,6 @@ define([
                 selectedLayerId = this.selectedLayer.id;
                 objectIdFieldName = this.selectedLayer.objectIdField;
             }
-            console.log("item", item);
             itemSummaryParent = domConstruct.create('div', {
                 'class': 'esriCTtemSummaryParent ' + item.attributes[objectIdFieldName] + "_" + item.webMapId + "_" + selectedLayerId,
                 "click": lang.partial(this.summaryClick, this, item),
@@ -316,7 +315,6 @@ define([
         * @return {string}      The title of the feature
         */
         getItemTitle: function (item) {
-            console.log("item from getitemtitle", item);
             return item.originalFeature.getTitle ? item.originalFeature.getTitle() : "";
         },
 

@@ -351,7 +351,7 @@ define([
             }, dom.byId("detailsPanelContainer"));
             //create panel header
             listHeader = domConstruct.create("div", {
-                "class": "esriCTListHeader esriCTBGColor esriCTHeaderTextColorAsBackground esriCTHeaderBackgroundColorAsTextColor"
+                "class": "esriCTListHeader"
             }, detailsPanelWrapper);
             //create back/close button
             closeButton = domConstruct.create("div", {
@@ -675,6 +675,7 @@ define([
                 this._sidebarCnt.addPanel("itemDetails", this._itemDetails);
 
                 this._itemDetails.onCancel = lang.hitch(this, function (item) {
+                    console.log("in itemDetails onCancel");
                     //If app is running in mobile mode and feature is selected from map
                     //Then navigate user to the map view
                     if (dojowindow.getBox().w < 768) {
@@ -698,10 +699,10 @@ define([
                         }
                         this._clearMyIssuesFromMap();
                     }
-                    //Highlight the selected feature row
-                    setTimeout(lang.hitch(this, function () {
-                        query(".esriCTItemSummaryParentSelected", this.domNode)[0].focus();
-                    }), 200);
+                    // //Highlight the selected feature row
+                    // setTimeout(lang.hitch(this, function () {
+                    //     query(".esriCTItemSummaryParentSelected", this.domNode)[0].focus();
+                    // }), 200);
                     //Add hidden class to edit geoform if it was open
                     if (!domClass.contains(this._itemDetails.popupDetailsDiv, "esriCTHidden")) {
                         domClass.add(this._itemDetails.popupDetailsDiv, "esriCTHidden")
@@ -923,6 +924,7 @@ define([
                             return;
                         }
                         if (!domClass.contains(dom.byId('detailsPanelContainer'), "esriCTHidden")) {
+                            console.log("huh?");
                             query(".esriCTBackButton", dom.byId('detailsPanelContainer'))[0].click();
                             return;
                         }
@@ -930,8 +932,10 @@ define([
                         if ((this._sidebarCnt._currentPanelName === "issueWall" ||
                             this._sidebarCnt._currentPanelName === "myIssues") &&
                             domStyle.get(dom.byId("toggleListViewButton"), "display") === "block") {
+                                console.log("in issuewall");
                             this._sidebarCnt._currentPanel.listBackButton.click();
                         } else if (this._sidebarCnt._currentPanelName === "itemDetails") {
+                            console.log("in sidebarcnt");
                             this._sidebarCnt._currentPanel.backIcon.click();
                         }
                     }
@@ -1197,6 +1201,7 @@ define([
                     this._clearMyIssuesFromMap();
                 });
                 this._myIssuesWidget.onItemSelected = lang.hitch(this, function (selectedFeature) {
+                    console.log("selected feature", selectedFeature);
                     this.appUtils.showLoadingIndicator();
                     this._isMyIssues = true;
                     if (selectedFeature.webMapId !== this._selectedMapDetails.webMapId) {
@@ -1263,6 +1268,7 @@ define([
         * @memberOf main
         */
         _createWebMapList: function () {
+            console.log("in create webmaplist");
             try {
                 var webMapDescriptionFields, webMapListConfigData, zoomInBtn, zoomOutBtn, geolocationPoint;
                 //construct json data for the fields to be shown in descriptions, based on the configuration
