@@ -29,7 +29,8 @@ html, body
     font-family: Arial;
     max-height: 100%;
     max-width: 100%;
-    background: #EDEDED;
+    /* background: #EDEDED; */
+    background: white;
     color: #555;
     overflow: hidden;
 }
@@ -66,7 +67,14 @@ html, body
 
 .esriCTMap
 {
-    height: 100%;
+    height: 50%;
+    overflow: hidden;
+    margin: 50px;
+    /* height: 100%; */
+}
+.page_description {
+    margin: 50px 50px 0px 50px;
+    font-size: 14px;
 }
 
 #mapParentContainer .esriCTReportButton, #mapParentContainer .esriCTListHeader
@@ -1227,6 +1235,7 @@ label
 
 .esriCTmapParentContainer
 {
+    background-color: white;
     width: 94%;
     margin: 0 3% 15px 3%;
 }
@@ -2651,3 +2660,23 @@ margin-top: -2px !important;
 }
 
 /* Input group addon css ends */
+.itemContentList{
+    list-style: none;
+}
+
+.item-status {
+    font-size: 14px;
+}
+.item-address {
+    font-size: 12px;
+}
+.item-date {
+    font-size: 12px;
+    color: gray;
+}
+
+.esriCTItemSummary {
+ border: 0;
+ margin: 20px 0px;
+ background-color: #EDEDED;
+}

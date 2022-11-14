@@ -182,12 +182,19 @@ define([
             this.appUtils.hideLoadingIndicator();
         },
 
+        getStatus: function(num){
+            // Hacky. Look up actual API to get statuses.
+            statuses = ["Submitted", "Received", "In Progress", "Completed"];
+            if (num >= statuses.length) return;
+
+            return statuses[num];
+        },
         /**
         * Builds an individual item summary given an item.
         * @param  {feature} item to display in the list
         */
         buildItemSummary: function (item) {
-            var itemTitle, itemVotes, itemSummaryDiv, itemTitleDiv, favDiv, itemSummaryParent, itemSummaryHighlighter, details = "", itemTitleDivMyIssues, selectedLayerId, objectIdFieldName;
+            var itemTitle, itemVotes, itemSummaryDiv, itgcemTitleDiv, favDiv, itemSummaryParent, itemSummaryHighlighter, details = "", itemTitleDivMyIssues, selectedLayerId, objectIdFieldName;
             item = (item && item.graphic) ? item.graphic : item;
             var _this = this;
             itemTitle = this.getItemTitle(item) || "&nbsp;";
@@ -200,6 +207,7 @@ define([
                 selectedLayerId = this.selectedLayer.id;
                 objectIdFieldName = this.selectedLayer.objectIdField;
             }
+            console.log("item", item);
             itemSummaryParent = domConstruct.create('div', {
                 'class': 'esriCTtemSummaryParent ' + item.attributes[objectIdFieldName] + "_" + item.webMapId + "_" + selectedLayerId,
                 "click": lang.partial(this.summaryClick, this, item),
@@ -243,8 +251,25 @@ define([
             } else {
                 itemTitleDiv = domConstruct.create('div', {
                     'class': 'esriCTItemTitle',
-                    'innerHTML': itemTitle
                 }, itemSummaryDiv);
+                
+                itemContent = domConstruct.create('ul', {'class': 'itemContentList'}, itemTitleDiv);
+                // id
+                itemId = domConstruct.create('li', {
+                    'class': 'item-id item-detail',
+                    'innerHTML': "#" + item.attributes['OBJECTID']
+                }, itemContent);
+                
+                // status
+                domConstruct.create('li', {
+                    'class': 'item-status item-detail',
+                    'innerHTML': "Status: " + this.getStatus(item.attributes.status)
+                }, itemContent);
+                // address
+                domConstruct.create('li', {
+                    'class': 'item-name item-detail',
+                    'innerHTML': item.attributes.location
+                }, itemContent);
             }
 
             //If selected features object id exsist, make sure we are highlighting the respective row
@@ -284,6 +309,7 @@ define([
         * @return {string}      The title of the feature
         */
         getItemTitle: function (item) {
+            console.log("item from getitemtitle", item);
             return item.originalFeature.getTitle ? item.originalFeature.getTitle() : "";
         },
 
