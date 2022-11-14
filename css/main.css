@@ -2709,6 +2709,7 @@ margin-top: -2px !important;
 
 .page_description {
     font-size: 14px;
+    max-width: 500px; 
 }
 .item-status::before {
     content: '';
@@ -2718,9 +2719,14 @@ margin-top: -2px !important;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
     background-color: #69b6d5;
 }
 .submitted::before {
     background-color: green;
+}
+
+.esriCTApplicationHeader {
+    padding: 20px;
+    border-bottom: 3px solid #EDEDED;
 }
