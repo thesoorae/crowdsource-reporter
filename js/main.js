@@ -286,10 +286,10 @@ define([
             }
 
             //If application is running in RTL mode, change the class of sidebar container
-            if (this.config.i18n.direction === "rtl") {
-                domClass.replace(dom.byId("sideContainer"), "esriCTBorderRight", "esriCTBorderLeft");
-                domClass.replace(dom.byId("geoformContainer"), "esriCTBorderRight", "esriCTBorderLeft");
-            }
+            // if (this.config.i18n.direction === "rtl") {
+            //     domClass.replace(dom.byId("sideContainer"), "esriCTBorderRight", "esriCTBorderLeft");
+            //     domClass.replace(dom.byId("geoformContainer"), "esriCTBorderRight", "esriCTBorderLeft");
+            // }
             //Create esri geocoder instance, this will be needed in the process of reverse geocoding
             this.appUtils.createGeocoderInstance();
             //create details panel for showing popup of non-editable features

@@ -355,19 +355,19 @@
 {
     #mapParentContainer
     {
-        width: 50% !important;
+        /* width: 50% !important; */
         display: block !important;
     }
 
     #sideContainer
     {
-        width: 50% !important;
+        /* width: 50% !important; */
         display: block !important;
     }
 
     .esriCTGeoFormParentContainer {
-        width: 50% !important;
-        left: 50% !important;
+        /* width: 50% !important; */
+        /* left: 50% !important; */
     }
 }
 
