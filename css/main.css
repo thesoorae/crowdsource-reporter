@@ -1032,7 +1032,8 @@ html, body
 .esriCTGeoFormBody
 {
     overflow-y: auto;
-    height: calc(100% - 60px);
+    /* changed from -60 to -200 to account for additional padding */
+    height: calc(100% - 200px);
     -webkit-overflow-scrolling: touch;
     color: #555;
     width: 100%;
@@ -2748,4 +2749,16 @@ margin-top: -2px !important;
 }
 .esriCTBackButton {
     margin-left: -50px;
+}
+
+.helpbox {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    background-color: #EDEDED;
+    padding: 20px;
+}
+.email {
+    margin: 0 30px;
+    color: gray;
 }
