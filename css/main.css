@@ -72,12 +72,8 @@ html, body
     margin: 50px;
     /* height: 100%; */
 }
-.page_description {
-    margin: 50px 50px 0px 50px;
-    font-size: 14px;
-}
 
-#mapParentContainer .esriCTReportButton, #mapParentContainer .esriCTListHeader
+#mapParentContainer .esriCTListHeader
 {
     display: none;
 }
@@ -1525,7 +1521,7 @@ label
 .esriCTItemList .esriCTItemSummary
 {
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
     cursor: pointer;
 }
 
@@ -2666,17 +2662,51 @@ margin-top: -2px !important;
 
 .item-status {
     font-size: 14px;
+    font-weight: normal;
 }
 .item-address {
     font-size: 12px;
+    font-weight: normal;
 }
 .item-date {
     font-size: 12px;
     color: gray;
+    font-weight: normal;
 }
 
 .esriCTItemSummary {
  border: 0;
  margin: 20px 0px;
  background-color: #EDEDED;
+}
+.uploadSubtitle {
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+    color: gray;
+}
+
+.mapTextAndButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 50px 50px 0px 50px;
+}
+.esriCTReportButton {
+    background-color: black;
+    color: white;
+    margin-left: 20px;
+    height: 45px;
+
+}
+.esriCTReportButtonText {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+.esriCTReportButtonContainer {
+    line-height: 25px;
+}
+
+.page_description {
+    font-size: 14px;
 }

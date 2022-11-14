@@ -267,9 +267,15 @@ define([
                 }, itemContent);
                 // address
                 domConstruct.create('li', {
-                    'class': 'item-name item-detail',
+                    'class': 'item-address item-detail',
                     'innerHTML': item.attributes.location
                 }, itemContent);
+                //date
+                domConstruct.create('li', {
+                    'class': 'item-date item-detail',
+                    'innerHTML': new Date(item.attributes.CreationDate).toLocaleString()
+                }, itemContent);
+
             }
 
             //If selected features object id exsist, make sure we are highlighting the respective row

@@ -822,12 +822,20 @@ define([
                     geoformAttachmentSectionLabel = this.appConfig.i18n.geoform.selectAttachments;
                 }
                 // Select attachment label
-                domConstruct.create("label", {
+                var formLabel = domConstruct.create("label", {
                     "innerHTML": geoformAttachmentSectionLabel,
                     "aria-label": geoformAttachmentSectionLabel,
                     "id": "geoFormAttachmentTitileLabel",
                     "class": "esriCTGeoFormTitles"
                 }, formContent);
+                var uploadSubtitle = "Add photos to help the county understand the conditions.";
+
+                domConstruct.create("div", {
+                    "innerHTML": uploadSubtitle,
+                    "aria-label": geoformAttachmentSectionLabel,
+                    "class": "uploadSubtitle"
+                }, formLabel);
+
                 domConstruct.create("br", {}, formContent);
                 // Create div for Attachment button
                 fileContainer = domConstruct.create("div", {
@@ -3122,19 +3130,21 @@ define([
         * @memberOf widgets/geo-form/geo-form
         */
         setLocationPanelHint: function () {
-            var pointLayerHintText, polygonLayerHintText;
-            if (dojowindow.getBox().w < 768) {
-                pointLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPointLayer;
-                polygonLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPolygonLayer;
-            } else {
-                pointLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPointLayerDesktop;
-                polygonLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPolygonLayerDesktop;
-            }
-            if (this.layer.geometryType === "esriGeometryPoint") {
-                domAttr.set(this.locationHintTextNode, "innerHTML", pointLayerHintText);
-            } else {
-                domAttr.set(this.locationHintTextNode, "innerHTML", polygonLayerHintText);
-            }
+            // var pointLayerHintText, polygonLayerHintText;
+            var pointLayerHintText = "If you know the address of the blighted property, type it in below. If you're not sure, drag the pin on the map to the approximate location.";
+            // if (dojowindow.getBox().w < 768) {
+            //     pointLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPointLayer;
+            //     polygonLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPolygonLayer;
+            // } else {
+            //     pointLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPointLayerDesktop;
+            //     polygonLayerHintText = this.appConfig.i18n.geoform.locationSelectionHintForPolygonLayerDesktop;
+            // }
+            // if (this.layer.geometryType === "esriGeometryPoint") {
+            //     domAttr.set(this.locationHintTextNode, "innerHTML", pointLayerHintText);
+            // } else {
+            //     domAttr.set(this.locationHintTextNode, "innerHTML", polygonLayerHintText);
+            // }
+            domAttr.set(this.locationHintTextNode, "innerHTML", pointLayerHintText);
             domAttr.set(this.locationHintTextNode, "aria-label", pointLayerHintText);
         },
 
